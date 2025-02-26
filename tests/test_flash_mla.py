@@ -123,7 +123,7 @@ def main(torch_dtype):
     random.seed(0)
 
     h_kv = 1
-    d, dv = 576, 512
+    d, dv = 192, 128
     causal = True
 
     for b in [128]:

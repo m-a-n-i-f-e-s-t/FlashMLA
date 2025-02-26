@@ -595,9 +595,9 @@ void run_flash_splitkv_fwd_mla(Flash_fwd_mla_params &params, cudaStream_t stream
 
 template<typename T, int Headdim>
 void run_mha_fwd_splitkv_mla(Flash_fwd_mla_params &params, cudaStream_t stream) {
-    static_assert(Headdim == 576);
-    FLASH_ASSERT(params.d_v == 512);
+    static_assert(Headdim == 192);
+    FLASH_ASSERT(params.d_v == 128);
     FLASH_ASSERT(params.k_ptr == params.v_ptr);  // Shared_KV
-    using Kernel_traits = Flash_fwd_kernel_traits_mla<576, 64, 64, 8, T, 512>;
+    using Kernel_traits = Flash_fwd_kernel_traits_mla<192, 64, 64, 8, T, 128>;
     run_flash_splitkv_fwd_mla<Kernel_traits, flash::SharedStorageMLA<Kernel_traits>>(params, stream);
 }
